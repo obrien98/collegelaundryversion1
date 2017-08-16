@@ -1,0 +1,25 @@
+{%  extends 'core/base.html' %}
+
+{% block head %}
+    <title> Home</title>
+{% endblock %}
+{% block body %}
+
+    {% if user.profile.role == 'USER' %}
+    <h1>User Account</h1>
+
+    {% elif user.profile.role == 'WORKER' %}
+    <h1>Worker Account</h1>
+    <h2>People Who Need Laundry Done In {{ user.profile.university|title  }}:</h2>
+    {% for customer in customers %}
+            <li>{{ customer.user.username }} <form><button type = 'submit' >Claim</button></form></li>
+        </ul>
+    {% endfor %}
+
+{% else %}
+<h1>Error</h1>
+{% endif %}
+
+
+
+{% endblock %}
